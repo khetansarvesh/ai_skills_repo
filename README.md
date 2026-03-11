@@ -205,91 +205,24 @@ Copy desired MCP servers from `/mcp-servers.json` to your `~/.claude.json`.
 
 **Important:** Replace `YOUR_*_HERE` placeholders with your actual API keys.
 
----
-
-## 🎯 Key Concepts
-
-### Agents
-
-Subagents handle delegated tasks with limited scope. Example:
-
-```markdown
----
-name: code-reviewer
-description: Reviews code for quality, security, and maintainability
-tools: ["Read", "Grep", "Glob", "Bash"]
-model: opus
----
-
-You are a senior code reviewer...
-```
-
-### Skills
-
-Skills are workflow definitions invoked by commands or agents:
-
-```markdown
-# TDD Workflow
-
-1. Define interfaces first
-2. Write failing tests (RED)
-3. Implement minimal code (GREEN)
-4. Refactor (IMPROVE)
-5. Verify 80%+ coverage
-```
-
-### Hooks
-
-Hooks fire on tool events. Example - warn about console.log:
-
-```json
-{
-  "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\"",
-  "hooks": [
-    {
-      "type": "command",
-      "command": "#!/bin/bash\ngrep -n 'console\\.log' \"$file_path\" && echo '[Hook] Remove console.log' >&2"
-    }
-  ]
-}
-```
-
-### Rules
-
-Rules are always-follow guidelines, organized into `common/` (language-agnostic) + language-specific directories:
-
-```
-rules/
-  common/          # Universal principles (always install)
-  typescript/      # TS/JS specific patterns and tools
-  python/          # Python specific patterns and tools
-  golang/          # Go specific patterns and tools
-  swift/           # Swift specific patterns and tools
-  php/             # PHP specific patterns and tools
-```
-
-See [`rules/README.md`](rules/README.md) for installation and structure details.
-
----
-
 ## 🗺️ Which Agent Should I Use?
 
 Not sure where to start? Use this quick reference:
 
-| I want to...                  | Use this command                                 | Agent used           |
-| ----------------------------- | ------------------------------------------------ | -------------------- |
-| Plan a new feature            | `/everything-claude-code:plan "Add auth"`        | planner              |
-| Design system architecture    | `/everything-claude-code:plan` + architect agent | architect            |
-| Write code with tests first   | `/tdd`                                           | tdd-guide            |
-| Review code I just wrote      | `/code-review`                                   | code-reviewer        |
-| Fix a failing build           | `/build-fix`                                     | build-error-resolver |
-| Run end-to-end tests          | `/e2e`                                           | e2e-runner           |
-| Find security vulnerabilities | `/security-scan`                                 | security-reviewer    |
-| Remove dead code              | `/refactor-clean`                                | refactor-cleaner     |
-| Update documentation          | `/update-docs`                                   | doc-updater          |
-| Review Go code                | `/go-review`                                     | go-reviewer          |
-| Review Python code            | `/python-review`                                 | python-reviewer      |
-| Audit database queries        | _(auto-delegated)_                               | database-reviewer    |
+| I want to...                  | Use this command          | Agent used           |
+| ----------------------------- | ------------------------- | -------------------- |
+| Plan a new feature            | `/plan`                   | planner              |
+| Design system architecture    | `/plan` + architect agent | architect            |
+| Write code with tests first   | `/tdd`                    | tdd-guide            |
+| Review code I just wrote      | `/code-review`            | code-reviewer        |
+| Fix a failing build           | `/build-fix`              | build-error-resolver |
+| Run end-to-end tests          | `/e2e`                    | e2e-runner           |
+| Find security vulnerabilities | `/security-scan`          | security-reviewer    |
+| Remove dead code              | `/refactor-clean`         | refactor-cleaner     |
+| Update documentation          | `/update-docs`            | doc-updater          |
+| Review Go code                | `/go-review`              | go-reviewer          |
+| Review Python code            | `/python-review`          | python-reviewer      |
+| Audit database queries        | _(auto-delegated)_        | database-reviewer    |
 
 ### Common Workflows
 
@@ -423,24 +356,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). The short version:
 3. Or create an agent in `agents/your-agent.md`
 4. Submit a PR with a clear description of what it does and when to use it
 </details>
-
----
-
-## 🧪 Running Tests
-
-The plugin includes a comprehensive test suite:
-
-```bash
-# Run all tests
-node tests/run-all.js
-
-# Run individual test files
-node tests/lib/utils.test.js
-node tests/lib/package-manager.test.js
-node tests/hooks/hooks.test.js
-```
-
----
 
 ## Cursor IDE Support
 
