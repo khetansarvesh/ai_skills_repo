@@ -9,19 +9,19 @@ everything-claude-code/
 |   |-- marketplace.json    # Marketplace catalog for /plugin marketplace add
 |
 |-- agents/           # Specialized subagents for delegation
-|   |-- planner.md           # Feature implementation planning
-|   |-- architect.md         # System design decisions
-|   |-- tdd-guide.md         # Test-driven development
-|   |-- code-reviewer.md     # Quality and security review
-|   |-- security-reviewer.md # Vulnerability analysis
-|   |-- build-error-resolver.md
-|   |-- e2e-runner.md        # Playwright E2E testing
-|   |-- refactor-cleaner.md  # Dead code cleanup
-|   |-- doc-updater.md       # Documentation sync
-|   |-- go-reviewer.md       # Go code review
+|   |-- planner.md           # Feature implementation planning `/plan`
+|   |-- architect.md         # System design decisions `/plan` + architect agent
+|   |-- tdd-guide.md         # Write Code with tests first `/tdd`
+|   |-- code-reviewer.md     # Code Quality and security review `/code-review`
+|   |-- security-reviewer.md # Find security vulnerabilities `/security-scan`
+|   |-- build-error-resolver.md # fix a failing bug `/build-fix`
+|   |-- e2e-runner.md        # Run end to end testing `/e2e`
+|   |-- refactor-cleaner.md  # Remove Dead code `/refactor-clean`
+|   |-- doc-updater.md       # Update Documentation `/update-docs`
+|   |-- go-reviewer.md       # Go code review `/go-review`
 |   |-- go-build-resolver.md # Go build error resolution
-|   |-- python-reviewer.md   # Python code review (NEW)
-|   |-- database-reviewer.md # Database/Supabase review (NEW)
+|   |-- python-reviewer.md   # Python code review `/python-review`
+|   |-- database-reviewer.md # Database/Supabase queries review
 |
 |-- skills/           # Workflow definitions and domain knowledge
 |   |-- coding-standards/           # Language best practices
@@ -154,16 +154,6 @@ everything-claude-code/
 |   |   |-- evaluate-session.js  # Extract patterns from sessions
 |   |-- setup-package-manager.js # Interactive PM setup
 |
-|-- tests/            # Test suite (NEW)
-|   |-- lib/                     # Library tests
-|   |-- hooks/                   # Hook tests
-|   |-- run-all.js               # Run all tests
-|
-|-- contexts/         # Dynamic system prompt injection contexts (Longform Guide)
-|   |-- dev.md              # Development mode context
-|   |-- review.md           # Code review mode context
-|   |-- research.md         # Research/exploration mode context
-|
 |-- examples/         # Example configurations and sessions
 |   |-- CLAUDE.md             # Example project-level config
 |   |-- user-CLAUDE.md        # Example user-level config
@@ -172,10 +162,7 @@ everything-claude-code/
 |   |-- django-api-CLAUDE.md      # Real-world Django REST API (DRF + Celery)
 |   |-- rust-api-CLAUDE.md        # Real-world Rust API (Axum + SQLx + PostgreSQL) (NEW)
 |
-|-- mcp-configs/      # MCP server configurations
-|   |-- mcp-servers.json    # GitHub, Supabase, Vercel, Railway, etc.
-|
-|-- marketplace.json  # Self-hosted marketplace config (for /plugin marketplace add)
+|-- mcp-servers.json    # GitHub, Supabase, Vercel, Railway, etc.
 ```
 
 ## 📥 Manual Installation
@@ -205,50 +192,30 @@ Copy desired MCP servers from `/mcp-servers.json` to your `~/.claude.json`.
 
 **Important:** Replace `YOUR_*_HERE` placeholders with your actual API keys.
 
-## 🗺️ Which Agent Should I Use?
-
-Not sure where to start? Use this quick reference:
-
-| I want to...                  | Use this command          | Agent used           |
-| ----------------------------- | ------------------------- | -------------------- |
-| Plan a new feature            | `/plan`                   | planner              |
-| Design system architecture    | `/plan` + architect agent | architect            |
-| Write code with tests first   | `/tdd`                    | tdd-guide            |
-| Review code I just wrote      | `/code-review`            | code-reviewer        |
-| Fix a failing build           | `/build-fix`              | build-error-resolver |
-| Run end-to-end tests          | `/e2e`                    | e2e-runner           |
-| Find security vulnerabilities | `/security-scan`          | security-reviewer    |
-| Remove dead code              | `/refactor-clean`         | refactor-cleaner     |
-| Update documentation          | `/update-docs`            | doc-updater          |
-| Review Go code                | `/go-review`              | go-reviewer          |
-| Review Python code            | `/python-review`          | python-reviewer      |
-| Audit database queries        | _(auto-delegated)_        | database-reviewer    |
-
-### Common Workflows
+## Common Workflows
 
 **Starting a new feature:**
 
 ```
-/everything-claude-code:plan "Add user authentication with OAuth"
-                                              → planner creates implementation blueprint
-/tdd                                          → tdd-guide enforces write-tests-first
-/code-review                                  → code-reviewer checks your work
+/plan → planner creates implementation blueprint
+/tdd → tdd-guide enforces write-tests-first
+/code-review
 ```
 
 **Fixing a bug:**
 
 ```
-/tdd                                          → tdd-guide: write a failing test that reproduces it
-                                              → implement the fix, verify test passes
-/code-review                                  → code-reviewer: catch regressions
+/tdd → tdd-guide: write a failing test that reproduces it
+/plan → implement the fix, verify test passes
+/code-review
 ```
 
 **Preparing for production:**
 
 ```
-/security-scan                                → security-reviewer: OWASP Top 10 audit
-/e2e                                          → e2e-runner: critical user flow tests
-/test-coverage                                → verify 80%+ coverage
+/security-scan → security-reviewer
+/e2e → e2e-runner: critical user flow tests
+/test-coverage → verify 80%+ coverage
 ```
 
 ---
