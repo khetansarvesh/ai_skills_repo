@@ -178,43 +178,30 @@ everything-claude-code/
 |-- marketplace.json  # Self-hosted marketplace config (for /plugin marketplace add)
 ```
 
-## 📥 Installation Manual Installation
+## 📥 Manual Installation
 
 ```bash
-# Clone the repo
-git clone https://github.com/affaan-m/everything-claude-code.git
-
 # Copy agents to your Claude config
-cp everything-claude-code/agents/*.md ~/.claude/agents/
+cp /agents/*.md ~/.claude/agents/
 
 # Copy rules (common + language-specific)
-cp -r everything-claude-code/rules/common/* ~/.claude/rules/
-cp -r everything-claude-code/rules/typescript/* ~/.claude/rules/   # pick your stack
-cp -r everything-claude-code/rules/python/* ~/.claude/rules/
-cp -r everything-claude-code/rules/golang/* ~/.claude/rules/
-cp -r everything-claude-code/rules/php/* ~/.claude/rules/
+cp -r /rules/common/* ~/.claude/rules/
+cp -r /rules/typescript/* ~/.claude/rules/   # pick your stack
+cp -r /rules/python/* ~/.claude/rules/
+cp -r /rules/golang/* ~/.claude/rules/
+cp -r /rules/php/* ~/.claude/rules/
 
 # Copy commands
-cp everything-claude-code/commands/*.md ~/.claude/commands/
+cp /commands/*.md ~/.claude/commands/
 
-# Copy skills (core vs niche)
-# Recommended (new users): core/general skills only
-cp -r everything-claude-code/.agents/skills/* ~/.claude/skills/
-cp -r everything-claude-code/skills/search-first ~/.claude/skills/
+# Copy skills
 
-# Optional: add niche/framework-specific skills only when needed
-# for s in django-patterns django-tdd springboot-patterns; do
-#   cp -r everything-claude-code/skills/$s ~/.claude/skills/
-# done
+# Copy Hooks
+Copy the hooks from `hooks.json` to your `~/.claude/settings.json`.
+
+# Configure MCPs
+Copy desired MCP servers from `/mcp-servers.json` to your `~/.claude.json`.
 ```
-
-#### Add hooks to settings.json
-
-Copy the hooks from `hooks/hooks.json` to your `~/.claude/settings.json`.
-
-#### Configure MCPs
-
-Copy desired MCP servers from `mcp-configs/mcp-servers.json` to your `~/.claude.json`.
 
 **Important:** Replace `YOUR_*_HERE` placeholders with your actual API keys.
 
