@@ -44,15 +44,16 @@
 
 ### Experience 1 (Most Recent)
 
-- **Company**: Sentient (Early Stage Open Source Research Lab)
+- **Company**: Sentient Labs (Early Stage Open Source Research)
 - **Title**: AI Research Intern
 - **Start Date**: November 2025
 - **End Date**: Present
 - **Location**: Remote, USA
 - **Description**: |
-  - Designed SERA framework for Crypto Agent, achieved 90% behavioural similarity to ReAct with 50% inference latency drop.
+  - Implemented automated agentic harness tracing (Harbor ATIF) for EvoSkill; contributions merged into the official Harbor repo.
+  - Designed SERA framework for Crypto Agent, with embedding-based tool routing and parallel execution across 40+ tool action space, achieving 90% behavioural similarity to ReAct with 50% inference latency drop and 30% fewer tool failures.
+  - Extended GEPA with multi-model ensemble generation and LLM-as-judge scoring cutting optimization time by 25%.
   - Introduced m-ROMA via reference-based image handling for the File Storage Toolkit, achieving 95% token efficiency.
-  - Implemented auto trace collection using harbor's ATIF format for finetuning self improving agents.
   - Deployed agentic memory layer for Sentient Chat using Mem0-based architecture, enabling long-term context storage.
 
 ### Experience 2
@@ -69,6 +70,16 @@
 
 ### Experience 3
 
+- **Company**: University of Maryland
+- **Title**: Research Assistant
+- **Start Date**: January 2025
+- **End Date**: May 2025
+- **Location**: College Park, MD, USA
+- **Description**: |
+  - Trained a Graph Attention Network with 18% higher accuracy versus GNNs for single cell classification on omics dataset.
+
+### Experience 4
+
 - **Company**: Piramal Capital & Housing Finance
 - **Title**: Data Scientist - AI Engineer
 - **Start Date**: June 2021
@@ -80,36 +91,33 @@
   - Built DataMart pipelines using PySpark and Airflow, improving querying efficiency by 2x and reducing processing time by 50%.
   - MLOps/LLMOps: Deployed open-source LLMs via CI/CD pipelines on ECS using Docker, reducing build latency by 30%.
 
-## Research & Projects
+## Projects - Paper Implementations
 
-### DeepSeek-R1 SLM - Paper Implementation (Feb 2025 - May 2025)
+- Implemented DeepSeek-R1 SLM with MHLA, Sparse MoE, KV Caching to achieve 3x inference speedup and 35% latency drop.
+- Post-trained via RL finetuning with GRPO algorithm to enhance model reasoning capabilities without value function overhead.
+- Developed multi-node GPU (4 A100s) data pipelines for large-scale LLM training using PyTorch Data Parallel (DDP).
 
-- Accelerated inference 3x by replacing MHA/GQA with Multi Headed Latent Attention and utilizing RoPE.
-- Added Sparse Mixture of Experts (MOE) with top K routing and KV Caching, reducing inference latency by 35%.
-- Post-trained via RL finetuning with GRPO algorithm to enhance model reasoning capabilities.
-- Developed multi-node GPU (4 A100s) data pipelines for large-scale LLM training using PyTorch DDP.
-
-### Computer Vision - Paper Implementations (Jan 2024 - Present)
+### Computer Vision (Jan 2024 - Present)
 
 - Engineered MNIST augmentation pipeline advancing from VAE/GANs to Diffusion Transformers with 98.4% accuracy gain.
-- Improved multimodal image-text alignment by 27% using VLM architecture with CLIP encoder.
+- Improved multimodal image-text alignment by 27% using Visual Language Model (VLM) architecture with CLIP encoder.
 - Developed Diffusion Transformers based video generation model achieving 30% faster inference than U-Net baselines.
-- Implemented YOLOv1 object detection paper from scratch.
-- Trained Deep-Q-Network (DQN) and PPO agents, optimizing decision-making via reward shaping and policy gradient methods.
+- Implemented YOLOv1 object detection paper from scratch and analyzed Detection Transformer for accuracy vs latency tradeoffs.
 
 ## Publications
 
+- Building automated benchmark generation to enable self-evolving AI agents via EvoSkill's failure-driven evolutionary loop.
 - Published research on ROMA (recursive deep search agent) achieving 10% SOTA improvement on SEAL-0 for hierarchical tasks.
 - Finetuned AlexNet for defect classification in AM parts to achieve 95%+ accuracy, published in Scientific.Net.
 
 ## Skills
 
 - **Programming Languages**: Python3, SQL, C++, Java
-- **Databases**: Snowflake, Pinecone, Neo4j, MySQL, PostgreSQL, MongoDB
-- **Frameworks**: PyTorch, Hugging Face, LangChain, LangGraph, LlamaIndex, PySpark, scikit-learn, NLTK, Spacy, Pandas, NumPy
+- **Databases**: Snowflake, Vector-DB, Pinecone, Neo4j, PostgreSQL, MongoDB
+- **Frameworks**: PyTorch, Hugging Face, LangChain, LangGraph, LlamaIndex, PySpark, scikit-learn, NLTK, Pandas, NumPy
 - **Cloud**: AWS Sagemaker, AWS Bedrock, AWS Glue, AWS Airflow, AWS EMR, AWS Step Function, AWS API Gateway
 - **Dev Tools**: VS Code, Git/GitHub, Docker, MLFlow, vLLM, UnSloth, W&B, FastAPI, Flask, Jira, Airflow
-- **IT Constructs**: RAG, LLMs, Post-training (RLHF/DPO), Generative AI, Reinforcement Learning, Deep Learning, NLP, Computer Vision, Graph Neural Networks, Machine Learning, MLOps, DSA, Vector-DB, Distributed Training, Inference Optimization (Quantization/Pruning/Distillation)
+- **IT Constructs**: RAG, LLMs, Post-training (RLHF/DPO), Generative AI, Reinforcement Learning (RL), DL, NLP, CV, Graph Neural Networks (GNN), ML, MLOps, DSA, Distributed Training, Inference Optimization (Quantization/Distillation)
 
 ## Achievements
 

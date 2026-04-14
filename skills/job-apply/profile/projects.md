@@ -24,9 +24,9 @@
 - **File**: `sera_project.md`
 - **Tech Stack**: RAG, embedding-based routing, parallel tool calling, GPT-OSS-120B, Qwen
 - **Duration**: Nov 2025 - Present
-- **Summary**: Designed SERA framework for a crypto research agent with 40+ tools. Achieved 90% behavioral similarity to ReAct with 50% inference latency drop.
+- **Summary**: Designed SERA framework for a crypto research agent with 40+ tools. Achieved 90% behavioral similarity to ReAct with 50% inference latency drop and 30% fewer tool failures.
 - **Key Achievements**:
-  - RAG-based tool filtering reduced tool failure rates by 29% and improved tool efficiency by 20%
+  - RAG-based tool filtering reduced tool failure rates by 30% and improved tool efficiency by 20%
   - Parallel tool calling cut query latency by 40% (31s to 18.5s)
   - Combined RAG + parallel execution yielded 25% fewer tools per query and 15% higher efficiency
   - 95% of queries completed in 1-2 iterations vs 8+ with vanilla ReAct
