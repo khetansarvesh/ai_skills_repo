@@ -121,8 +121,28 @@ def load_user_input_jobs():
 
 # ── Title filter builder ────────────────────────────────────────────
 
+def _build_positive_matcher(keyword):
+    """Build a matcher for a positive keyword.
+
+    Short keywords (≤3 chars like AI, ML, NLP, RAG) use word boundary regex
+    to avoid false matches (e.g., "AI" matching "Chair", "ML" matching "HTML").
+    Longer keywords use substring match.
+    """
+    kw_lower = keyword.lower()
+    if len(kw_lower) <= 3:
+        pattern = re.compile(r"\b" + re.escape(kw_lower) + r"\b", re.IGNORECASE)
+        return lambda title: bool(pattern.search(title))
+    else:
+        return lambda title: kw_lower in title.lower()
+
+
 def build_title_filter(title_filter_config=None):
     """Build a title filter function.
+
+    Positive keywords: word boundary regex for short keywords (≤3 chars),
+    substring match for longer phrases. At least 1 must match.
+
+    Negative keywords: always substring match. 0 must match.
 
     Args:
         title_filter_config: Dict with "positive" and "negative" keyword lists.
@@ -134,14 +154,14 @@ def build_title_filter(title_filter_config=None):
     if title_filter_config is None:
         title_filter_config = load_title_filter()
 
-    positive = [k.lower() for k in title_filter_config.get("positive", [])]
+    positive_matchers = [_build_positive_matcher(k) for k in title_filter_config.get("positive", [])]
     negative = [k.lower() for k in title_filter_config.get("negative", [])]
 
-    print(f"  Title filter: {len(positive)} positive, {len(negative)} negative keywords")
+    print(f"  Title filter: {len(positive_matchers)} positive, {len(negative)} negative keywords")
 
     def matches(title):
         lower = title.lower()
-        has_positive = len(positive) == 0 or any(k in lower for k in positive)
+        has_positive = len(positive_matchers) == 0 or any(m(title) for m in positive_matchers)
         has_negative = any(k in lower for k in negative)
         return has_positive and not has_negative
 
